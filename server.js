@@ -94,4 +94,35 @@ app.post("/api/tcs-assistant", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+app.get('/', (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <title>TCS Marketplace Assistant</title>
+        <style>
+          body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+          }
+          h1 {
+            color: #ff0000;
+          }
+          p {
+            font-size: 18px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>🔥 TCS Marketplace AI Assistant</h1>
+        <p>Powered by Sauced HTX • “Get Sauced With Us”</p>
+        <p>API is live and ready to connect!</p>
+      </body>
+    </html>
+  `);
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`TCS Assistant running on http://localhost:${PORT}`));
