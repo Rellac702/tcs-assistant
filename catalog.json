@@ -1,0 +1,42 @@
+{
+  "products": [
+    {
+      "id": "sauced-og-12oz",
+      "title": "Sauced HTX Original — 12oz",
+      "price": 11.99,
+      "brand": "Sauced HTX",
+      "category": "Sauces",
+      "tags": ["signature","mild heat","US-made","food"],
+      "image": "https://cdn.example.com/sauced-og-12oz.jpg",
+      "url": "https://tcsmarketplace.com/products/sauced-og-12oz",
+      "in_stock": true
+    },
+    {
+      "id": "sauced-spicy-12oz",
+      "title": "Sauced HTX Spicy Heat — 12oz",
+      "price": 12.49,
+      "brand": "Sauced HTX",
+      "category": "Sauces",
+      "tags": ["spicy","US-made","food"],
+      "image": "https://cdn.example.com/sauced-spicy-12oz.jpg",
+      "url": "https://tcsmarketplace.com/products/sauced-spicy-12oz",
+      "in_stock": true
+    },
+    {
+      "id": "sauced-dry-rub",
+      "title": "Sauced HTX All-Purpose Dry Rub — 6oz",
+      "price": 8.99,
+      "brand": "Sauced HTX",
+      "category": "Seasonings",
+      "tags": ["bbq","bundle","US-made","food"],
+      "image": "https://cdn.example.com/sauced-rub.jpg",
+      "url": "https://tcsmarketplace.com/products/sauced-dry-rub",
+      "in_stock": true
+    }
+  ],
+  "shipping": {
+    "domestic": "2–5 business days",
+    "free_threshold": 49,
+    "returns": "30 days unopened (food) / 30 days new condition (non-food)"
+  }
+}
