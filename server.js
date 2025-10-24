@@ -122,7 +122,75 @@ app.get('/', (req, res) => {
     </html>
   `);
 });
+app.get('/', (req, res) => {
+  const API_URL = `${req.protocol}://${req.get('host')}/api/tcs-assistant`;
+  const LOGO = 'https://your-cdn-or-shopify-logo-url.png'; // <- replace with your logo
+
+  res.send(`
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>TCS Marketplace AI Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center}
+    .card{max-width:760px;width:92%;background:#111;border:1px solid #222;border-radius:16px;padding:28px;box-shadow:0 10px 40px rgba(0,0,0,.4);text-align:center}
+    img.logo{width:120px;height:120px;object-fit:contain;border-radius:12px;margin:6px auto 14px auto;display:block;filter:drop-shadow(0 4px 14px rgba(255,0,0,.25))}
+    h1{margin:6px 0 8px 0;font-size:28px;letter-spacing:.2px}
+    .tag{opacity:.85}
+    .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+    input,button{padding:12px 14px;border-radius:10px;border:1px solid #333;background:#0f0f0f;color:#fff;outline:none}
+    input{min-width:280px}
+    button{cursor:pointer}
+    .ok{border-color:#333}
+    .cta{background:#ff1a1a;border-color:#ff1a1a;font-weight:700}
+    pre{background:#0b0b0b;border:1px solid #222;border-radius:10px;padding:14px;text-align:left;overflow:auto;max-height:320px;margin-top:16px;white-space:pre-wrap;word-break:break-word}
+    a.link{color:#ff4d4d;text-decoration:none}
+    .small{opacity:.7;font-size:13px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="\${LOGO}" alt="TCS Logo" onerror="this.style.display='none'"/>
+    <h1>🔥 TCS Marketplace AI Assistant</h1>
+    <div class="tag">Powered by Sauced HTX — “Get Sauced With Us”</div>
+
+    <div class="row">
+      <input id="msg" value="show me US-made sauces under $25" />
+      <button class="cta" id="send">Test API</button>
+      <a class="link" href="/health" target="_blank"><button class="ok">Health</button></a>
+    </div>
+
+    <pre id="out">Click “Test API” to see a live response from: \n\${API_URL}</pre>
+    <div class="small">Docs: POST \`/api/tcs-assistant\` → { message: string }</div>
+  </div>
+
+  <script>
+    const out = document.getElementById('out');
+    document.getElementById('send').onclick = async () => {
+      const message = document.getElementById('msg').value.trim();
+      out.textContent = 'Sending…';
+      try {
+        const res = await fetch('\${API_URL}', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ message })
+        });
+        const data = await res.json();
+        out.textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        out.textContent = 'Error: ' + e.message;
+      }
+    };
+  </script>
+</body>
+</html>
+  `);
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`TCS Assistant running on http://localhost:${PORT}`));
+
 
