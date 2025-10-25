@@ -74,6 +74,17 @@ app.post("/api/tcs-assistant", async (req, res) => {
     if (intent.type === "Catering_Lead") {
       return res.json({ reply: pickReply(intent, [], shipping), products: [] });
     }
+app.post("/api/tcs-assistant", async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    const reply = `🔥 You said: ${message}. Here's what I recommend from TCS Marketplace!`;
+    res.json({ reply });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
     const scored = products.map(p => ({ p, s: scoreProduct(p, message || "", intent) }))
       .sort((a, b) => b.s - a.s);
@@ -192,6 +203,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`TCS Assistant running on http://localhost:${PORT}`));
+
 
 
 
